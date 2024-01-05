@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SecondDoorComponent } from './second-door.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SecondDoorComponent
+  ],
   imports: [
     CommonModule
   ]
