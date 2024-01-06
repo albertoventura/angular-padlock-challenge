@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FirstDoorComponent } from './first-door.component';
-import { PadlockModule } from 'src/app/shared/components/padlock/padlock.module';
+import { PadlockComponent } from './padlock.component';
 import { MaterialModule } from 'src/app/core/modules/material/material.module';
 
 
 
 @NgModule({
   declarations: [
-    FirstDoorComponent
+    PadlockComponent
   ],
   imports: [
     CommonModule,
-    PadlockModule,
     MaterialModule,
+  ],
+  exports: [
+    PadlockComponent,
   ]
 })
-export class FirstDoorModule { }
+export class PadlockModule { }

@@ -1,0 +1,13 @@
+<button mat-raised-button
+  class="padlock"
+  [ngClass]="{'big': isBig, 'small': !isBig, 'open': isOpen, 'close': !isOpen}"
+  [disableRipple]="true"
+  [disabled]="!isInteractive"
+>
+  <mat-icon *ngIf="!isOpen">lock_outline</mat-icon>
+  <mat-icon *ngIf="isOpen">lock_open</mat-icon>
+</button>
+
+
+<!-- [ngClass]="isBig ? 'big' : 'small'"
+  [ngClass]="isOpen ? 'open' : 'close'" -->
