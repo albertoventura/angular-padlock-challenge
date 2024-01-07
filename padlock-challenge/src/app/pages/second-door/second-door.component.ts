@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { routerLabels } from 'src/app/core/constants/router-labels';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 @Component({
   selector: 'app-second-door',
@@ -9,16 +10,29 @@ import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 })
 export class SecondDoorComponent implements OnInit {
 
-  isEachLockOpen = [false, false, false, false, false]
+  isEachLockOpen = [false, false, false, false, false];
+  pageKey: string = routerLabels.secondDoor;
 
-  constructor(public dialog: MatDialog,) { }
+  constructor(
+    public dialog: MatDialog,
+    private localstorage: LocalstorageService,
+  ) { }
 
   ngOnInit(): void {
+    this.checkState();
   }
 
   toogleLock(i: number){
     this.isEachLockOpen[i] = !this.isEachLockOpen[i];
+    this.saveState(this.isEachLockOpen);
     this.validateCombination();
+  }
+
+  validateCombination(){
+    this.getState();
+    if(this.checkAllLocks()){
+      this.goToNextDoor()
+    }
   }
 
   checkAllLocks(){
@@ -30,11 +44,6 @@ export class SecondDoorComponent implements OnInit {
     return true;
   }
 
-  validateCombination(){
-    if(this.checkAllLocks()){
-      this.goToNextDoor()
-    }
-  }
   goToNextDoor(){
     this.dialog.open(ModalComponent, {
       data: {
@@ -44,4 +53,21 @@ export class SecondDoorComponent implements OnInit {
     });
   }
 
+  saveState(state: boolean[]){
+    this.localstorage.set(this.pageKey, state);
+  }
+
+  getState(){
+    const state = this.localstorage.get(this.pageKey);
+    console.log("local storage second door", state);
+    return state;
+  }
+
+  checkState(){
+    if(this.getState()){
+      console.log("tem state");
+      this.isEachLockOpen = this.getState();
+      this.validateCombination();
+    }
+  }
 }

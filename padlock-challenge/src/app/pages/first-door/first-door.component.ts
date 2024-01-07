@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { routerLabels } from 'src/app/core/constants/router-labels';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 
 @Component({
@@ -13,22 +14,29 @@ export class FirstDoorComponent implements OnInit {
 
   isEachSmallLockOpen = [false, false, false]
   isBigLockOpen: boolean = false;
+  pageKey: string = routerLabels.firstDoor;
 
-  constructor(public dialog: MatDialog,) { }
+  constructor(
+    public dialog: MatDialog,
+    private localstorage: LocalstorageService,
+  ) { }
 
   ngOnInit(): void {
+    this.checkState();
   }
 
   toogleLock(i: number){
     this.isEachSmallLockOpen[i] = !this.isEachSmallLockOpen[i];
-    this.openBig();
+    this.saveState(this.isEachSmallLockOpen);
+    this.validateToOpenBig();
   }
 
   checkAllSmallOpen(){
     return this.isEachSmallLockOpen.every(lock => lock === true);
   }
 
-  openBig(){
+  validateToOpenBig(){
+    this.getState();
     if(this.checkAllSmallOpen()){
       this.isBigLockOpen = true;
       this.goToNextDoor();
@@ -44,5 +52,22 @@ export class FirstDoorComponent implements OnInit {
         path: routerLabels.secondDoor,
       }
     });
+  }
+
+  saveState(state: boolean[]){
+    this.localstorage.set(this.pageKey, state);
+  }
+  getState(){
+    const state = this.localstorage.get(this.pageKey);
+    console.log("local storage first door", state);
+    return state;
+  }
+
+  checkState(){
+    if(this.getState()){
+      console.log("tem state");
+      this.isEachSmallLockOpen = this.getState();
+      this.validateToOpenBig();
+    }
   }
 }
