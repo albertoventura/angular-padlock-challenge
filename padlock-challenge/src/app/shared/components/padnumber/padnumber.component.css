@@ -1,0 +1,14 @@
+.padnumber {
+  margin: 20px;
+}
+.square {
+  width: 60px;
+  height: 60px;
+}
+
+.open {
+  background-color: #1f1;
+}
+.close {
+  background-color: #f1f;
+}
