@@ -23,6 +23,10 @@ export class FirstDoorComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkState();
+    const currentPage = this.getCurrentPage();
+    if(currentPage != routerLabels.firstDoor){
+      this.saveCurrentPage();
+    }
   }
 
   toogleLock(i: number){
@@ -69,5 +73,11 @@ export class FirstDoorComponent implements OnInit {
       this.isEachSmallLockOpen = this.getState();
       this.validateToOpenBig();
     }
+  }
+  saveCurrentPage(){
+    this.localstorage.set('currentPage', routerLabels.firstDoor);
+  }
+  getCurrentPage(){
+    return this.localstorage.get('currentPage');
   }
 }

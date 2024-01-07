@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
 export interface DialogData {
   path: string;
@@ -19,6 +20,7 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private localstorage: LocalstorageService,
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
@@ -35,6 +37,7 @@ export class ModalComponent implements OnInit {
   }
   goNext(){
     this.dialogRef.close();
+    this.localstorage.set('currentPage', this.path);
     this.route.navigate([this.path]);
   }
 }
