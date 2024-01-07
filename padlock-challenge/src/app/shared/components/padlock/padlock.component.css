@@ -2,22 +2,20 @@
   margin: 20px;
 
 }
-.button-content{
-  position: relative;
-}
-.small {
+
+.padlock--small {
   width: 80px;
   height: 80px;
 }
-.big {
+.padlock--big {
   width: 120px;
   height: 120px;
 }
 
-.open {
+.padlock--open {
   background-color: rgb(118, 173, 118);
 }
-.close {
+.padlock--close {
   background-color: rgb(194, 94, 94);
 }
 
@@ -27,9 +25,13 @@ mat-icon {
   width: 40px;
 }
 
-.status{
+.padlock__content{
+  position: relative;
+}
+
+.content__status{
   position: absolute;
   bottom: -13px;
   width: 100%;
-  font-size: 15px;
+  font-size: 10px;
 }

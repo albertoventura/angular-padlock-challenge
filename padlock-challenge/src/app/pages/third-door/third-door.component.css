@@ -1,27 +1,27 @@
-.biglock-field{
+.biglock-container{
   display: flex;
   justify-content: center;
 }
 
-.button-container {
+.padlock-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 360px;
 }
 
-.button-container__button {
+.padlock-container__button {
   width: 80px;
   height: 80px;
   margin: 10px;
 }
 
 @media (min-width: 330px) {
-  .button-container__button:nth-child(-n+3) {
+  .padlock-container__button:nth-child(-n+3) {
     margin-right: 10px;
   }
 
-  .button-container__button:nth-child(10) {
+  .padlock-container__button:nth-child(10) {
     margin-right: auto;
     margin-left: auto;
   }

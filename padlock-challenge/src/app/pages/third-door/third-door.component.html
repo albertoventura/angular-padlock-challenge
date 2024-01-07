@@ -1,14 +1,14 @@
-<mat-card class="example-card">
+<mat-card>
   <mat-card-header>
     <mat-card-title>Terceira Porta</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div class="biglock-field">
+    <div class="biglock-container">
       <app-padlock [isBig]="true" [isInteractive]="true" [isOpen]="isBigLockOpen"></app-padlock>
     </div>
-    <div class="button-container">
+    <div class="padlock-container">
       <ng-container *ngFor="let number of padnumberList; let i = index">
-        <app-padnumber [value]="number" (click)="tapNumber(i)" class="button-container__button"></app-padnumber>
+        <app-padnumber [value]="number" (click)="tapNumber(i)" class="padlock-container__button"></app-padnumber>
       </ng-container>
     </div>
   </mat-card-content>
