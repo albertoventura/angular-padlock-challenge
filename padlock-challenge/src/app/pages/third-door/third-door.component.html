@@ -11,11 +11,10 @@
       <div>
         <app-padlock [isBig]="true" [isInteractive]="true" [isOpen]="isBigLockOpen"></app-padlock>
       </div>
-      <div>
+      <div class="button-container">
 
         <ng-container *ngFor="let number of padnumberList; let i = index">
-          <!-- <app-padlock [isOpen]="isSmallLockOpen" (click)="toogleLock(i)"></app-padlock> -->
-          <app-padnumber [value]="number" (click)="tapNumber(i)"></app-padnumber>
+          <app-padnumber [value]="number" (click)="tapNumber(i)" class="button-container__button"></app-padnumber>
         </ng-container>
 
       </div>
