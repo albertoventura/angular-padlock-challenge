@@ -49,7 +49,7 @@ export class ThirdDoorComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, {
       data: {
         title: "Terceira Porta",
-        path: routerLabels.thirdDoor,
+        path: routerLabels.catRoom,
       }
     });
   }

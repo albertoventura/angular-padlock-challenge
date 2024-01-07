@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { routerLabels } from 'src/app/core/constants/router-labels';
 
 @Component({
   selector: 'app-cat-room',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatRoomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router,) { }
 
   ngOnInit(): void {
   }
 
+  resetChallenge(){
+    this.route.navigate([routerLabels.firstDoor]);
+  }
 }

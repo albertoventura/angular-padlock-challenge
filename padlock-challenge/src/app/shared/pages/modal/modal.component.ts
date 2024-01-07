@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   path: string;
@@ -17,6 +18,7 @@ export class ModalComponent implements OnInit {
   path: string = "";
 
   constructor(
+    private route: Router,
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
@@ -33,6 +35,6 @@ export class ModalComponent implements OnInit {
   }
   goNext(){
     this.dialogRef.close();
-
+    this.route.navigate([this.path]);
   }
 }
