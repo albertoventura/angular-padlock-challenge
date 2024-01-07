@@ -34,9 +34,3 @@ export class FirstDoorComponent implements OnInit {
   }
 
 }
-
-interface padlock {
-  id: string;
-  isOpen: boolean;
-  isBig: boolean;
-}
