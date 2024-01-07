@@ -23,13 +23,6 @@ export class ThirdDoorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /* toogleLock(i: number){
-    this.isEachLockOpen[i] = !this.isEachLockOpen[i];
-    console.log('lock combin', this.isEachLockOpen);
-    console.log('lock check', this.checkAllLocks());
-    this.validateCombination();
-  } */
-
   checkPassword(){
     if(this.tappedPassword === this.correctPassword){
       return true;
@@ -45,8 +38,7 @@ export class ThirdDoorComponent implements OnInit {
     }
   }
   goToNextDoor(){
-    console.log('open modal');
-    const dialogRef = this.dialog.open(ModalComponent, {
+    this.dialog.open(ModalComponent, {
       data: {
         title: "Terceira Porta",
         path: routerLabels.catRoom,
@@ -56,10 +48,6 @@ export class ThirdDoorComponent implements OnInit {
 
   tapNumber(i: number){
     this.tappedPassword += this.padnumberList[i]
-    console.log('tapped pass', this.tappedPassword);
-    console.log('pass check', this.checkPassword());
     this.validateRule();
-
   }
-
 }

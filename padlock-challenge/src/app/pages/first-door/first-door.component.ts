@@ -38,8 +38,7 @@ export class FirstDoorComponent implements OnInit {
   }
 
   goToNextDoor(){
-    console.log('open modal');
-    const dialogRef = this.dialog.open(ModalComponent, {
+    this.dialog.open(ModalComponent, {
       data: {
         title: "Primeira Porta",
         path: routerLabels.secondDoor,

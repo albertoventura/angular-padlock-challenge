@@ -1,6 +1,8 @@
-<button mat-raised-button
+<button mat-stroked-button
   class="padnumber"
+  [ngClass]="{'padnumber--clicked': isClicked}"
   [disableRipple]="true"
+  (click)="onClick()"
 >
   {{value}}
 </button>

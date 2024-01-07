@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-padnumber',
@@ -7,10 +7,21 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PadnumberComponent implements OnInit {
   @Input() value: number = 0;
+  @Input() isClicked: boolean = false;
+  @Output() clicked = new EventEmitter<boolean>();
+  timeToChangeStatus: number = 300;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClick() {
+    this.isClicked = true;
+    this.clicked.emit(this.isClicked);
+    setTimeout(()=>{
+      this.isClicked = false;
+    }, this.timeToChangeStatus);
   }
 
 }

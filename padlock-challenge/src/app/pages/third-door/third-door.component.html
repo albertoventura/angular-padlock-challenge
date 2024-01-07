@@ -8,7 +8,7 @@
     </div>
     <div class="padlock-container">
       <ng-container *ngFor="let number of padnumberList; let i = index">
-        <app-padnumber [value]="number" (click)="tapNumber(i)" class="padlock-container__button"></app-padnumber>
+        <app-padnumber [value]="number" (clicked)="tapNumber(i)" class="padlock-container__button"></app-padnumber>
       </ng-container>
     </div>
   </mat-card-content>
