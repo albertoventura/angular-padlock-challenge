@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { routerLabels } from 'src/app/core/constants/router-labels';
+import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 
 @Component({
   selector: 'app-third-door',
@@ -14,7 +17,8 @@ export class ThirdDoorComponent implements OnInit {
   tappedPassword: string = "";
   correctPassword: string = "28091998"
   isBigLockOpen: boolean = false;
-  constructor() { }
+
+  constructor(public dialog: MatDialog,) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +46,12 @@ export class ThirdDoorComponent implements OnInit {
   }
   goToNextDoor(){
     console.log('open modal');
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: "Terceira Porta",
+        path: routerLabels.thirdDoor,
+      }
+    });
   }
 
   tapNumber(i: number){
