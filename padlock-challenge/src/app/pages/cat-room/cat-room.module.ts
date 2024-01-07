@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CatRoomComponent } from './cat-room.component';
+import { MaterialModule } from 'src/app/core/modules/material/material.module';
 
 
 
@@ -9,7 +10,8 @@ import { CatRoomComponent } from './cat-room.component';
     CatRoomComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
   ]
 })
 export class CatRoomModule { }
