@@ -4,16 +4,15 @@
   [disableRipple]="true"
   [disabled]="!isInteractive"
 >
+<div class="button-content">
   <div *ngIf="!isOpen">
     <mat-icon>lock_outline</mat-icon>
-    <div>Lock</div>
+    <div class="status">Lock</div>
   </div>
   <div *ngIf="isOpen">
     <mat-icon>lock_open</mat-icon>
-    <div>Lock open</div>
+    <div class="status">Lock open</div>
   </div>
+
+</div>
 </button>
-
-
-<!-- [ngClass]="isBig ? 'big' : 'small'"
-  [ngClass]="isOpen ? 'open' : 'close'" -->

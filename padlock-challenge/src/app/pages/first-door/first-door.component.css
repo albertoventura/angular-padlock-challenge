@@ -1,3 +1,4 @@
-.first-door-container{
-  padding: 50px;
+.biglock-field{
+  display: flex;
+  justify-content: center;
 }
