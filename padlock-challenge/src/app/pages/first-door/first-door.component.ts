@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { routerLabels } from 'src/app/core/constants/router-labels';
+import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 
 @Component({
   selector: 'app-first-door',
@@ -11,7 +14,7 @@ export class FirstDoorComponent implements OnInit {
   isEachSmallLockOpen = [false, false, false]
   isBigLockOpen: boolean = false;
 
-  constructor() { }
+  constructor(public dialog: MatDialog,) { }
 
   ngOnInit(): void {
   }
@@ -28,9 +31,19 @@ export class FirstDoorComponent implements OnInit {
   openBig(){
     if(this.checkAllSmallOpen()){
       this.isBigLockOpen = true;
+      this.goToNextDoor();
     }else{
       this.isBigLockOpen = false;
     }
   }
 
+  goToNextDoor(){
+    console.log('open modal');
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: "Primeira Porta",
+        path: routerLabels.secondDoor,
+      }
+    });
+  }
 }

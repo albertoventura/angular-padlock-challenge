@@ -20,6 +20,7 @@ export class ModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
+    dialogRef.disableClose = true;
     this.buildData(data);
   }
 
