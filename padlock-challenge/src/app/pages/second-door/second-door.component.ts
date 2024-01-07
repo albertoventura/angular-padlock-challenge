@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { routerLabels } from 'src/app/core/constants/router-labels';
+import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 @Component({
   selector: 'app-second-door',
   templateUrl: './second-door.component.html',
@@ -9,7 +11,7 @@ export class SecondDoorComponent implements OnInit {
 
   isEachLockOpen = [false, false, false, false, false]
 
-  constructor() { }
+  constructor(public dialog: MatDialog,) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +48,12 @@ export class SecondDoorComponent implements OnInit {
   }
   goToNextDoor(){
     console.log('open modal');
-
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: "Secunda Porta",
+        path: routerLabels.thirdDoor,
+      }
+    });
   }
 
 }
