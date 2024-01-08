@@ -1,35 +1,65 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Location } from '@angular/common';
 import { AppComponent } from './app.component';
+import { LocalstorageService } from './core/services/localstorage.service';
+import { routerLabels } from './core/constants/router-labels';
+import { Router } from '@angular/router';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let localstorageService: LocalstorageService;
+  let router: Router;
+  let location: Location;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      imports: [RouterTestingModule],
+      providers: [LocalstorageService],
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    localstorageService = TestBed.inject(LocalstorageService);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'padlock-challenge'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('padlock-challenge');
+  it('should navigate to first door when currentPage is not set', () => {
+    spyOn(location, 'path').and.returnValue('');
+    spyOn(component, 'getCurrentPage').and.returnValue(null);
+    spyOn(router, 'navigate');
+
+    component.checkPageOrder();
+
+    expect(router.navigate).toHaveBeenCalledWith([routerLabels.firstDoor]);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('padlock-challenge app is running!');
+  it('should navigate to first door and clear localStorage when currentPage is set and not first door', () => {
+    spyOn(location, 'path').and.returnValue('/second-door');
+    spyOn(component, 'getCurrentPage').and.returnValue(routerLabels.secondDoor);
+    spyOn(router, 'navigate');
+    spyOn(localstorageService, 'clear');
+
+    component.checkPageOrder();
+
+    expect(localstorageService.clear).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith([routerLabels.firstDoor]);
+  });
+
+  it('should navigate to currentPage when currentPage is set and valid', () => {
+    spyOn(location, 'path').and.returnValue('/second-door');
+    spyOn(component, 'getCurrentPage').and.returnValue(routerLabels.secondDoor);
+    spyOn(router, 'navigate');
+
+    component.checkPageOrder();
+
+    expect(router.navigate).toHaveBeenCalledWith([routerLabels.secondDoor]);
   });
 });
