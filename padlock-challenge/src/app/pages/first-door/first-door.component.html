@@ -6,7 +6,7 @@
   </mat-card-header>
   <mat-card-content>
     <div class="biglock-container">
-      <app-padlock [isBig]="true" [isInteractive]="isBigLockOpen" [isOpen]="isBigLockOpen" [arialabel]="isBigLockOpen ? 'Cadeado grande aberto' : 'Cadeado grande fechado'"></app-padlock>
+      <app-padlock [isBig]="true" [isInteractive]="false" [isOpen]="isBigLockOpen" [arialabel]="isBigLockOpen ? 'Cadeado grande aberto' : 'Cadeado grande fechado'"></app-padlock>
     </div>
     <div>
       <ng-container *ngFor="let isSmallLockOpen of isEachSmallLockOpen; let i = index">

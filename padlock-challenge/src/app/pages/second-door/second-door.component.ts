@@ -47,7 +47,7 @@ export class SecondDoorComponent implements OnInit {
   goToNextDoor(){
     this.dialog.open(ModalComponent, {
       data: {
-        title: "Secunda Porta",
+        title: "Segunda Porta",
         path: routerLabels.thirdDoor,
       }
     });
@@ -59,13 +59,11 @@ export class SecondDoorComponent implements OnInit {
 
   getState(){
     const state = this.localstorage.get(this.pageKey);
-    console.log("local storage second door", state);
     return state;
   }
 
   checkState(){
     if(this.getState()){
-      console.log("tem state");
       this.isEachLockOpen = this.getState();
       this.validateCombination();
     }
