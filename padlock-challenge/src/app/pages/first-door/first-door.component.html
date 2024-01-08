@@ -1,14 +1,16 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Primeira Porta</mat-card-title>
+    <mat-card-title>
+      <h2>Primeira Porta</h2>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div class="biglock-container">
-      <app-padlock [isBig]="true" [isInteractive]="isBigLockOpen" [isOpen]="isBigLockOpen"></app-padlock>
+      <app-padlock [isBig]="true" [isInteractive]="isBigLockOpen" [isOpen]="isBigLockOpen" aria-label="Cadeado Grande"></app-padlock>
     </div>
     <div>
       <ng-container *ngFor="let isSmallLockOpen of isEachSmallLockOpen; let i = index">
-        <app-padlock [isOpen]="isSmallLockOpen" (click)="toogleLock(i)"></app-padlock>
+        <app-padlock [isOpen]="isSmallLockOpen" (click)="toogleLock(i)" [attr.aria-label]="'Cadeado Pequeno ' + (i + 1)" tabindex="0" (keydown.enter)="toogleLock(i)"></app-padlock>
       </ng-container>
     </div>
   </mat-card-content>
