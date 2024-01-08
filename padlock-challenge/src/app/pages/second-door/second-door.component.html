@@ -1,16 +1,19 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <h2>Secunda Porta</h2>
+      <h1>Segunda Porta</h1>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div>
-      <app-padlock [isOpen]="isEachLockOpen[0]" (click)="toogleLock(0)" [attr.aria-label]="'Cadeado Pequeno 1'" tabindex="0" (keydown.enter)="toogleLock(0)"></app-padlock>
-      <app-padlock [isOpen]="isEachLockOpen[1]" (click)="toogleLock(1)" [attr.aria-label]="'Cadeado Pequeno 2'" tabindex="0" (keydown.enter)="toogleLock(1)"></app-padlock>
-      <app-padlock [isOpen]="isEachLockOpen[2]" (click)="toogleLock(2)" [attr.aria-label]="'Cadeado Grande'" tabindex="0" (keydown.enter)="toogleLock(2)" [isBig]="true"></app-padlock>
-      <app-padlock [isOpen]="isEachLockOpen[3]" (click)="toogleLock(3)" [attr.aria-label]="'Cadeado Pequeno 3'" tabindex="0" (keydown.enter)="toogleLock(3)"></app-padlock>
-      <app-padlock [isOpen]="isEachLockOpen[4]" (click)="toogleLock(4)" [attr.aria-label]="'Cadeado Pequeno 4'" tabindex="0" (keydown.enter)="toogleLock(4)"></app-padlock>
+      <ng-container *ngFor="let padlock of isEachLockOpen; let i = index">
+        <app-padlock
+          [isOpen]="padlock"
+          (click)="toogleLock(i)" (keydown.enter)="toogleLock(i)"
+          [isBig]="i === 2"
+          [arialabel]="('Cadeado' + (i === 2 ?' Grande ' : ' Pequeno ' + (i>2 ? i : (i + 1)) )) + (padlock ? ' aberto': ' fechado')"
+        ></app-padlock>
+      </ng-container>
     </div>
   </mat-card-content>
 </mat-card>
