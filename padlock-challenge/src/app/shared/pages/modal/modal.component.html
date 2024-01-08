@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>Combinação correta!</h1>
+<h2 mat-dialog-title>Combinação correta!</h2>
 <div mat-dialog-content>
   Parabéns você passou pela {{title}}
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="goNext()">Ir para a próxima</button>
+  <button mat-button (click)="goNext()" aria-label="Avançar" tabindex="0">Avançar</button>
 </div>
