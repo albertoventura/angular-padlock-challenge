@@ -6,11 +6,11 @@
   </mat-card-header>
   <mat-card-content>
     <div class="biglock-container">
-      <app-padlock [isBig]="true" [isInteractive]="isBigLockOpen" [isOpen]="isBigLockOpen" aria-label="Cadeado Grande"></app-padlock>
+      <app-padlock [isBig]="true" [isInteractive]="isBigLockOpen" [isOpen]="isBigLockOpen" [arialabel]="isBigLockOpen ? 'Cadeado grande aberto' : 'Cadeado grande fechado'"></app-padlock>
     </div>
     <div>
       <ng-container *ngFor="let isSmallLockOpen of isEachSmallLockOpen; let i = index">
-        <app-padlock [isOpen]="isSmallLockOpen" (click)="toogleLock(i)" [attr.aria-label]="'Cadeado Pequeno ' + (i + 1)" tabindex="0" (keydown.enter)="toogleLock(i)"></app-padlock>
+        <app-padlock [isOpen]="isSmallLockOpen" (click)="toogleLock(i)" (keydown.enter)="toogleLock(i)" [arialabel]="('Cadeado Pequeno ' + (i + 1))+(isSmallLockOpen ? ' aberto': ' fechado')"></app-padlock>
       </ng-container>
     </div>
   </mat-card-content>

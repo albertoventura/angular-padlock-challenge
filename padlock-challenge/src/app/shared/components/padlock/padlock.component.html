@@ -3,6 +3,7 @@
   [ngClass]="{'padlock--big': isBig, 'padlock--small': !isBig, 'padlock--open': isOpen, 'padlock--close': !isOpen}"
   [disableRipple]="true"
   [disabled]="!isInteractive"
+  [attr.aria-label]="arialabel"
 >
   <div class="padlock__content">
     <div *ngIf="!isOpen">
