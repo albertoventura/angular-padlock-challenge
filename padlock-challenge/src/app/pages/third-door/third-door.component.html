@@ -1,10 +1,12 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Terceira Porta</mat-card-title>
+    <mat-card-title>
+      <h2>Terceira Porta</h2>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div class="biglock-container">
-      <app-padlock [isBig]="true" [isInteractive]="true" [isOpen]="isBigLockOpen"></app-padlock>
+      <app-padlock [isBig]="true" [isOpen]="isBigLockOpen" [attr.aria-label]="isBigLockOpen ? 'Cadeado grande aberto' : 'Cadeado grande fechado'" [isInteractive]="false"></app-padlock>
     </div>
     <div class="asterisk-container">
       <ng-container>
@@ -16,7 +18,7 @@
     </div>
     <div class="padlock-container">
       <ng-container *ngFor="let number of padnumberList; let i = index">
-        <app-padnumber [value]="number" (clicked)="tapNumber(i)" class="padlock-container__button"></app-padnumber>
+        <app-padnumber [value]="number" [attr.aria-label]="'Teclado numérico de valor ' + number" (clicked)="tapNumber(i)" (keydown.enter)="tapNumber(i)" tabindex="0" class="padlock-container__button"></app-padnumber>
       </ng-container>
     </div>
   </mat-card-content>
