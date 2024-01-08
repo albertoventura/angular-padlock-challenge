@@ -63,13 +63,11 @@ export class FirstDoorComponent implements OnInit {
   }
   getState(){
     const state = this.localstorage.get(this.pageKey);
-    console.log("local storage first door", state);
     return state;
   }
 
   checkState(){
     if(this.getState()){
-      console.log("tem state");
       this.isEachSmallLockOpen = this.getState();
       this.validateToOpenBig();
     }

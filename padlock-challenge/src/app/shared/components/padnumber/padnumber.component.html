@@ -2,6 +2,7 @@
   class="padnumber"
   [ngClass]="{'padnumber--clicked': isClicked}"
   [disableRipple]="true"
+  [attr.aria-label]="arialabel"
   (click)="onClick()"
 >
   {{value}}

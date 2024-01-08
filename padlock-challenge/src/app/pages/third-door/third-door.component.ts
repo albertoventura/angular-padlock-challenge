@@ -29,9 +29,6 @@ export class ThirdDoorComponent implements OnInit {
 
   tapNumber(i: number){
     this.tappedPassword.push(this.padnumberList[i].toString());
-    console.log(this.convertArrayIntoString(this.tappedPassword));
-
-
     this.saveState(this.tappedPassword);
     this.validateRule();
   }
@@ -76,13 +73,11 @@ export class ThirdDoorComponent implements OnInit {
 
   getState(){
     const state = this.localstorage.get(this.pageKey);
-    console.log("local storage first door", state);
     return state;
   }
 
   checkState(){
     if(this.getState()){
-      console.log("tem state");
       this.tappedPassword = this.getState();
       this.validateRule();
     }

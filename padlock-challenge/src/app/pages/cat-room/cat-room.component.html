@@ -1,14 +1,19 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Gatinhos!</mat-card-title>
+    <mat-card-title>
+      <h1>Quarto dos gatinhos!</h1>
+    </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="https://www.petz.com.br/blog/wp-content/uploads/2017/07/filhote-gato-01.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
+  <img mat-card-image
+    src="https://www.petz.com.br/blog/wp-content/uploads/2017/07/filhote-gato-01.jpg"
+    alt="Foto de gatinhos fofos e famintos" aria-label="Foto de gatinhos fofos e famintos"
+  >
+  <mat-card-content aria-live="assertive">
     <p>
       Pronto! Agora é só alimentá-los!
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="resetChallenge()">Reiniciar o desafio</button>
+    <button mat-button (click)="resetChallenge()" aria-label="Reiniciar o desafio" tabindex="0">Reiniciar o desafio</button>
   </mat-card-actions>
 </mat-card>
