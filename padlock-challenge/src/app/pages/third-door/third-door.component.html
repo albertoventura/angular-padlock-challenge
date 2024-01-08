@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <h2>Terceira Porta</h2>
+      <h1>Terceira Porta</h1>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -18,7 +18,12 @@
     </div>
     <div class="padlock-container">
       <ng-container *ngFor="let number of padnumberList; let i = index">
-        <app-padnumber [value]="number" [attr.aria-label]="'Teclado numérico de valor ' + number" (clicked)="tapNumber(i)" (keydown.enter)="tapNumber(i)" tabindex="0" class="padlock-container__button"></app-padnumber>
+        <app-padnumber
+          [value]="number"
+          [arialabel]="'Teclado numérico de valor ' + number"
+          (clicked)="tapNumber(i)" (keydown.enter)="tapNumber(i)"
+          class="padlock-container__button">
+        </app-padnumber>
       </ng-container>
     </div>
   </mat-card-content>

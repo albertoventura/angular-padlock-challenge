@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class PadnumberComponent implements OnInit {
   @Input() value: number = 0;
   @Input() isClicked: boolean = false;
+  @Input() arialabel: string = "";
   @Output() clicked = new EventEmitter<boolean>();
   timeToChangeStatus: number = 300;
 
